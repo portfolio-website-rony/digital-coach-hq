@@ -24,7 +24,7 @@ import {
 } from "recharts";
 import { format, subDays, startOfDay } from "date-fns";
 
-export const Route = createFileRoute("/_admin/")({
+export const Route = createFileRoute("/_admin/admin")({
   head: () => ({ meta: [{ title: "Dashboard — Admin" }] }),
   component: Dashboard,
 });

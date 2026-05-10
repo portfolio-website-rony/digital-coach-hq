@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Loader2, Video, Copy, Check } from "lucide-react";
 
-export const Route = createFileRoute("/_admin/meetings")({
+export const Route = createFileRoute("/_admin/admin/meetings")({
   head: () => ({ meta: [{ title: "Meetings — Admin" }] }),
   component: MeetingsPage,
 });
