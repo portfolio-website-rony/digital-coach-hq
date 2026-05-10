@@ -19,7 +19,7 @@ function AdminLayout() {
       return;
     }
     if (!isAdmin) {
-      navigate({ to: "/admin/login", search: { error: "no_access" } as never });
+      navigate({ to: "/admin/login" });
     }
   }, [loading, session, isAdmin, navigate]);
 
