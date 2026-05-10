@@ -1,0 +1,42 @@
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+
+export type ContactSettings = {
+  whatsapp: string;
+  messenger: string;
+  facebook: string;
+  email: string;
+  youtube?: string;
+  instagram?: string;
+};
+
+const DEFAULTS: ContactSettings = {
+  whatsapp: "8801700000000",
+  messenger: "https://m.me/coachrony",
+  facebook: "https://facebook.com/coachrony",
+  email: "hello@coachrony.com",
+};
+
+let cache: ContactSettings | null = null;
+
+export function useContactSettings(): ContactSettings {
+  const [s, setS] = useState<ContactSettings>(cache ?? DEFAULTS);
+  useEffect(() => {
+    let mounted = true;
+    void supabase
+      .from("cms_site_settings")
+      .select("value")
+      .eq("key", "contact")
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!mounted || !data) return;
+        const merged = { ...DEFAULTS, ...(data.value as Partial<ContactSettings>) };
+        cache = merged;
+        setS(merged);
+      });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+  return s;
+}
