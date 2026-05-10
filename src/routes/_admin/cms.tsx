@@ -92,7 +92,7 @@ function CmsPage() {
         published: form.get("published") === "on",
       };
     }
-    const { error } = await supabase.from(tab.table).insert(payload);
+    const { error } = await supabase.from(tab.table).insert(payload as never);
     if (error) return toast.error(error.message);
     toast.success("Saved");
     setShowForm(false);
