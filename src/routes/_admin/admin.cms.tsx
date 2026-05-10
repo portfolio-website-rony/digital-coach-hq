@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Loader2, Plus, Trash2 } from "lucide-react";
 
-export const Route = createFileRoute("/_admin/cms")({
+export const Route = createFileRoute("/_admin/admin/cms")({
   head: () => ({ meta: [{ title: "CMS — Admin" }] }),
   component: CmsPage,
 });
