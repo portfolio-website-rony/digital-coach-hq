@@ -14,7 +14,99 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          notes: string | null
+          phone: string | null
+          preferred_date: string
+          preferred_time: string
+          status: string
+          topic: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          notes?: string | null
+          phone?: string | null
+          preferred_date: string
+          preferred_time: string
+          status?: string
+          topic?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          preferred_date?: string
+          preferred_time?: string
+          status?: string
+          topic?: string | null
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          interest: string | null
+          message: string | null
+          name: string
+          phone: string | null
+          source: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          interest?: string | null
+          message?: string | null
+          name: string
+          phone?: string | null
+          source?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          interest?: string | null
+          message?: string | null
+          name?: string
+          phone?: string | null
+          source?: string
+        }
+        Relationships: []
+      }
+      subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          tag: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          tag?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          tag?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
