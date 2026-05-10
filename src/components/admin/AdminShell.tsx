@@ -17,7 +17,12 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-const NAV = [
+const NAV: Array<{
+  to: string;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  exact?: boolean;
+}> = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/admin/leads", label: "Leads", icon: Users },
   { to: "/admin/bookings", label: "Bookings", icon: CalendarDays },
@@ -26,7 +31,7 @@ const NAV = [
   { to: "/admin/payments", label: "Payments", icon: CreditCard },
   { to: "/admin/cms", label: "CMS", icon: FileText },
   { to: "/admin/settings", label: "Settings", icon: Settings },
-] as const;
+];
 
 export function AdminShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
