@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, Play, Star, Quote } from "lucide-react";
+import { ArrowRight, Quote } from "lucide-react";
 import { Section, GlassCard } from "@/components/site/Section";
 import { LeadForm } from "@/components/site/LeadForm";
 import { SERVICES, PROGRAMS, PORTFOLIO, TESTIMONIALS, STATS, SKILLS } from "@/lib/site-data";
-import coachPortrait from "@/assets/coach-rony-portrait.png";
+import { SpaceHero } from "@/components/site/hero/SpaceHero";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -13,144 +12,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
-      {/* HERO — center-stage portrait */}
-      <section className="relative overflow-hidden">
-        {/* Animated blobs */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -top-32 left-1/4 h-[460px] w-[460px] rounded-full bg-primary/30 blur-3xl animate-blob" />
-          <div className="absolute top-40 right-1/4 h-[460px] w-[460px] rounded-full bg-accent/30 blur-3xl animate-blob [animation-delay:-6s]" />
-        </div>
-
-        <div className="mx-auto flex max-w-5xl flex-col items-center px-4 pt-16 pb-12 text-center sm:px-6 md:pt-24">
-          <motion.span
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium text-primary-glow"
-          >
-            <Star className="h-3 w-3" /> AI Creator • Digital Educator
-          </motion.span>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.05 }}
-            className="mt-5 max-w-3xl text-4xl font-bold leading-[1.1] sm:text-5xl md:text-6xl"
-          >
-            <span className="text-gradient">AI দিয়ে</span> নিজের স্কিল,
-            <br className="hidden sm:block" /> ব্র্যান্ড ও ইনকাম তৈরি করুন
-          </motion.h1>
-
-          {/* Center portrait */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.15 }}
-            className="relative mt-10 flex w-full justify-center"
-          >
-            {/* Glow halo behind */}
-            <div aria-hidden className="absolute inset-0 -z-10 mx-auto flex justify-center">
-              <div className="h-[420px] w-[420px] rounded-full bg-gradient-primary opacity-40 blur-3xl" />
-            </div>
-
-            {/* Portrait — original photo, edges masked into the page background */}
-            <div className="relative">
-              <img
-                src={coachPortrait}
-                alt="CoachRony — AI Creator ও Digital Educator"
-                className="relative z-10 h-[440px] w-[440px] select-none rounded-full object-cover sm:h-[500px] sm:w-[500px] md:h-[560px] md:w-[560px]"
-                style={{
-                  WebkitMaskImage:
-                    "radial-gradient(circle at 50% 45%, black 38%, rgba(0,0,0,0.85) 52%, transparent 78%)",
-                  maskImage:
-                    "radial-gradient(circle at 50% 45%, black 38%, rgba(0,0,0,0.85) 52%, transparent 78%)",
-                }}
-                draggable={false}
-              />
-              {/* Bottom fade — extra blend into page background */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-b from-transparent to-background"
-              />
-            </div>
-
-            {/* Small floating glass cards beside portrait */}
-            <GlassCard className="absolute left-0 top-16 hidden w-52 animate-float lg:block">
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">AI Workflow</div>
-              <div className="mt-1 font-display text-base font-semibold">10× faster content</div>
-              <div className="mt-2 h-1.5 w-full rounded-full bg-white/10">
-                <div className="h-full w-4/5 rounded-full bg-gradient-primary" />
-              </div>
-            </GlassCard>
-            <GlassCard className="absolute right-0 top-32 hidden w-52 animate-float [animation-delay:-3s] lg:block">
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Monthly Revenue</div>
-              <div className="mt-1 font-display text-xl font-bold text-gradient">৳ 1,24,500</div>
-              <div className="mt-1 text-[11px] text-emerald-400">▲ 38% this month</div>
-            </GlassCard>
-          </motion.div>
-
-          {/* Name + bio */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="relative z-30 -mt-10 max-w-2xl"
-          >
-            <h2 className="font-display text-2xl font-bold sm:text-3xl">
-              <span className="text-gradient">CoachRony</span>
-              <span className="text-muted-foreground"> — AI Creator & Educator</span>
-            </h2>
-            <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-              আমি <b className="text-foreground">CoachRony</b>। গত ৫+ বছর ধরে AI Content Creation,
-              Vibe Coding, Digital Products ও Online Business নিয়ে কাজ করছি — এবং ১০,০০০+ student-কে
-              শিখিয়েছি কীভাবে AI দিয়ে নিজের skill, brand ও income build করতে হয়। শুরু করুন আজই, বিনামূল্যে।
-            </p>
-
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
-              <Link
-                to="/free-class"
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-background shadow-glow transition hover:opacity-90"
-              >
-                Join Free Class <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/programs"
-                className="glass-strong inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition hover:border-primary/40"
-              >
-                <Play className="h-4 w-4" /> View Programs
-              </Link>
-              <a
-                href="https://wa.me/8801700000000"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-[oklch(0.72_0.18_152/15%)] px-5 py-3 text-sm font-semibold text-[oklch(0.85_0.15_152)] hover:bg-[oklch(0.72_0.18_152/25%)]"
-              >
-                <MessageCircle className="h-4 w-4" /> WhatsApp
-              </a>
-            </div>
-
-            {/* Social proof */}
-            <div className="mt-8 flex items-center justify-center gap-5">
-              <div className="flex -space-x-2">
-                {[0, 1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="h-9 w-9 rounded-full border-2 border-background bg-gradient-to-br from-primary to-accent"
-                  />
-                ))}
-              </div>
-              <div className="text-left text-sm">
-                <div className="flex gap-0.5 text-amber-400">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-3.5 w-3.5 fill-current" />
-                  ))}
-                </div>
-                <div className="text-muted-foreground">10,000+ students trust CoachRony</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <SpaceHero />
 
       {/* STATS */}
       <Section className="!py-12">
