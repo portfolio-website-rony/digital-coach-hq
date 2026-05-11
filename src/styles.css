@@ -40,6 +40,17 @@
   --animate-float: float 6s ease-in-out infinite;
   --animate-blob: blob 18s ease-in-out infinite;
   --animate-fade-up: fade-up 0.7s ease-out forwards;
+  --animate-twinkle: twinkle 4s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3.5s ease-in-out infinite;
+  --animate-nebula-drift: nebula-drift 30s ease-in-out infinite;
+  --animate-orbit-cw-1: orbit-cw 18s linear infinite;
+  --animate-orbit-cw-2: orbit-cw 34s linear infinite;
+  --animate-orbit-ccw-1: orbit-ccw 26s linear infinite;
+  --animate-orbit-ccw-2: orbit-ccw 44s linear infinite;
+  --animate-counter-cw-1: orbit-ccw 18s linear infinite;
+  --animate-counter-cw-2: orbit-ccw 34s linear infinite;
+  --animate-counter-ccw-1: orbit-cw 26s linear infinite;
+  --animate-counter-ccw-2: orbit-cw 44s linear infinite;
 }
 
 :root {
