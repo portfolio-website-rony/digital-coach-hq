@@ -4,6 +4,7 @@ import { ArrowRight, MessageCircle, Play, Star, Quote } from "lucide-react";
 import { Section, GlassCard } from "@/components/site/Section";
 import { LeadForm } from "@/components/site/LeadForm";
 import { SERVICES, PROGRAMS, PORTFOLIO, TESTIMONIALS, STATS, SKILLS } from "@/lib/site-data";
+import coachPortrait from "@/assets/coach-rony-portrait.png";
 
 export const Route = createFileRoute("/")({
   component: Home,
