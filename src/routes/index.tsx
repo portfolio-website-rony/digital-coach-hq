@@ -53,18 +53,24 @@ function Home() {
               <div className="h-[420px] w-[420px] rounded-full bg-gradient-primary opacity-40 blur-3xl" />
             </div>
 
-            {/* Portrait — fades into background at the bottom */}
+            {/* Portrait — original photo, edges masked into the page background */}
             <div className="relative">
               <img
                 src={coachPortrait}
                 alt="CoachRony — AI Creator ও Digital Educator"
-                className="relative z-10 h-[440px] w-auto select-none object-contain drop-shadow-[0_30px_60px_oklch(0.13_0.02_270/0.6)] sm:h-[500px] md:h-[560px]"
+                className="relative z-10 h-[440px] w-[440px] select-none rounded-full object-cover sm:h-[500px] sm:w-[500px] md:h-[560px] md:w-[560px]"
+                style={{
+                  WebkitMaskImage:
+                    "radial-gradient(circle at 50% 45%, black 38%, rgba(0,0,0,0.85) 52%, transparent 78%)",
+                  maskImage:
+                    "radial-gradient(circle at 50% 45%, black 38%, rgba(0,0,0,0.85) 52%, transparent 78%)",
+                }}
                 draggable={false}
               />
-              {/* Bottom fade — blends portrait into page background */}
+              {/* Bottom fade — extra blend into page background */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-b from-transparent to-background"
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-b from-transparent to-background"
               />
             </div>
 
