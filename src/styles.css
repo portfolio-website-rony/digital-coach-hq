@@ -56,9 +56,15 @@
 :root {
   --radius: 0.875rem;
 
-  /* Dark base */
-  --background: oklch(0.13 0.02 270);
+  /* Dark space base */
+  --background: oklch(0.08 0.025 270);
   --foreground: oklch(0.98 0.005 270);
+
+  /* Space palette */
+  --space-blue: oklch(0.68 0.2 240);
+  --space-purple: oklch(0.65 0.24 290);
+  --space-cyan: oklch(0.82 0.16 210);
+  --moon-white: oklch(0.97 0.02 240);
 
   /* Glass surfaces */
   --card: oklch(0.18 0.025 270 / 60%);
