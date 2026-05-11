@@ -1,0 +1,135 @@
+import { Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { ArrowRight, Play, Rocket, Users, Trophy, Globe2, GraduationCap } from "lucide-react";
+import { Starfield } from "./Starfield";
+import { NebulaLayer } from "./NebulaLayer";
+import { MouseSpotlight } from "./MouseSpotlight";
+import { MissionOrb } from "./MissionOrb";
+import { FloatingStat } from "./FloatingStat";
+import { OrbitSystem } from "./OrbitSystem";
+
+export function SpaceHero() {
+  return (
+    <section className="relative min-h-[100vh] w-full overflow-hidden bg-gradient-space">
+      {/* layered background */}
+      <NebulaLayer />
+      <Starfield />
+      <MouseSpotlight />
+      <div aria-hidden className="pointer-events-none absolute inset-0 noise-overlay" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-background"
+      />
+
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pt-28 pb-24 sm:px-6 lg:grid-cols-[45fr_55fr] lg:items-center lg:gap-8 lg:pt-32">
+        {/* LEFT */}
+        <div className="relative z-10">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="glass-strong inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium text-primary-glow"
+          >
+            <Rocket className="h-3.5 w-3.5" /> Future of AI Learning
+          </motion.span>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.05 }}
+            className="mt-5 font-display text-4xl font-bold leading-[1.05] sm:text-5xl xl:text-6xl"
+          >
+            Learn <span className="text-gradient glow-text">AI</span> &
+            <br />
+            Build <span className="text-gradient glow-text">Digital Products</span>
+            <br />
+            For The <span className="text-gradient glow-text">Future</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg"
+          >
+            Helping creators, freelancers, and students master AI, websites, and digital business
+            through futuristic learning experiences. শুরু করুন আজই —{" "}
+            <b className="text-foreground">CoachRony</b>-এর সাথে।
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="mt-8 flex flex-wrap gap-3"
+          >
+            <Link
+              to="/free-class"
+              className="group inline-flex items-center gap-2 rounded-xl bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-background shadow-neon-purple transition hover:-translate-y-0.5"
+            >
+              Start Learning
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              to="/portfolio"
+              className="glass-strong neon-border inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold transition hover:-translate-y-0.5"
+            >
+              <Play className="h-4 w-4" /> Watch Demo
+            </Link>
+          </motion.div>
+
+          {/* mission + floating stats */}
+          <div className="mt-12 grid items-center gap-6 sm:grid-cols-[auto_1fr]">
+            <MissionOrb current={125000} goal={1000000} />
+            <div className="grid grid-cols-2 gap-3">
+              <FloatingStat
+                value="10K+"
+                label="Students"
+                icon={<Users className="h-4 w-4" />}
+                delay={0.1}
+              />
+              <FloatingStat
+                value="500+"
+                label="Projects"
+                icon={<GraduationCap className="h-4 w-4" />}
+                delay={0.25}
+              />
+              <FloatingStat
+                value="98%"
+                label="Success Rate"
+                icon={<Trophy className="h-4 w-4" />}
+                delay={0.4}
+              />
+              <FloatingStat
+                value="50+"
+                label="Countries"
+                icon={<Globe2 className="h-4 w-4" />}
+                delay={0.55}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT — orbit system */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="relative flex items-center justify-center lg:scale-100"
+        >
+          <div className="w-full max-w-[600px]">
+            <OrbitSystem />
+          </div>
+
+          {/* floating glass code chip */}
+          <div className="glass-strong neon-border absolute -bottom-2 left-2 hidden rounded-xl px-3 py-2 text-[11px] font-mono text-primary-glow shadow-neon-purple md:block">
+            <span className="text-muted-foreground">$</span> ai.create(<span className="text-gradient">"future"</span>)
+          </div>
+          <div className="glass-strong absolute right-2 top-4 hidden rounded-xl px-3 py-2 text-[11px] font-mono text-[oklch(0.85_0.16_230)] shadow-neon-blue md:block">
+            <span className="text-muted-foreground">{"// "}</span>vibe coding
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
