@@ -99,7 +99,7 @@ export function SpaceHero() {
           </motion.div>
 
           {/* mission + floating stats */}
-          <div className="mt-12 grid items-center gap-6 sm:grid-cols-[auto_1fr]">
+          <div className="mt-12 grid w-full items-center gap-6 sm:grid-cols-[auto_1fr]">
             <MissionOrb current={125000} goal={1000000} />
             <div className="grid grid-cols-2 gap-3">
               <FloatingStat
@@ -129,26 +129,6 @@ export function SpaceHero() {
             </div>
           </div>
         </div>
-
-        {/* RIGHT — orbit system */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative flex items-center justify-center lg:scale-100"
-        >
-          <div className="w-full max-w-[600px]">
-            <OrbitSystem />
-          </div>
-
-          {/* floating glass code chip */}
-          <div className="glass-strong neon-border absolute -bottom-2 left-2 hidden rounded-xl px-3 py-2 text-[11px] font-mono text-primary-glow shadow-neon-purple md:block">
-            <span className="text-muted-foreground">$</span> ai.create(<span className="text-gradient">"future"</span>)
-          </div>
-          <div className="glass-strong absolute right-2 top-4 hidden rounded-xl px-3 py-2 text-[11px] font-mono text-[oklch(0.85_0.16_230)] shadow-neon-blue md:block">
-            <span className="text-muted-foreground">{"// "}</span>vibe coding
-          </div>
-        </motion.div>
       </div>
     </section>
   );
