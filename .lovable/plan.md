@@ -1,89 +1,60 @@
-## Futuristic Space-Themed AI Hero — Redesign Plan
+## Goal
+Upgrade `OrbitSystem` into a premium AI-tool ecosystem around the existing center portrait (untouched), distributing 25 AI brands across 4 orbit rings with glowing glass icons, smooth orbit + counter-rotation, hover glow, and lightweight performance.
 
-Complete redesign of the home hero section into a cinematic, space/AI-themed experience with an orbital animation system on the right and mission storytelling on the left. Existing dark purple/blue tokens will be retuned toward a deeper space palette, but no other pages will change.
+## Approach
 
----
+### 1. Brand icon source
+Use `simple-icons` (SVG path data, tree-shakable, ~1KB each) for tools that exist there: ChatGPT (openai), Gemini (googlegemini), Claude (anthropic), Midjourney, Runway, ElevenLabs, Perplexity, Cursor, Replit, Notion, Stability AI, Canva, n8n, Google (AI Studio), Suno, Zapier.
+For brands without simple-icons coverage (Lovable, HeyGen, Flow, Nano Banana, Bolt.new, Leonardo AI, Synthesia, Pika Labs, DeepSeek, Grok), use stylised 2-letter monograms in matching brand colors inside the same glass chip — visually consistent, zero extra bundle weight.
 
-### 1. Design tokens (`src/styles.css`)
+Install: `bun add simple-icons`. A small wrapper component renders `<svg>` from `simple-icons` path data + brand hex, with monogram fallback.
 
-Add/tune (keep existing names so other pages stay intact):
-- `--background`: deeper near-black `oklch(0.08 0.02 270)`
-- New tokens: `--space-blue`, `--space-purple`, `--space-cyan`, `--moon-white`
-- New gradients: `--gradient-space`, `--gradient-orb`
-- New shadows: `--shadow-neon-blue`, `--shadow-neon-purple`, `--shadow-moon`
-- New keyframes: `orbit-cw`, `orbit-ccw`, `pulse-glow`, `twinkle`, `nebula-drift`
-- New utilities: `.neon-border`, `.glow-text`, `.starfield`, `.noise-overlay`
+### 2. Data model
+Single `AI_TOOLS` array with `{ name, slug?, initials?, color, ring, featured? }` distributed to avoid crowding (25 items / 4 rings):
+- Ring 1 (inner, 240px) — 4: ChatGPT, Claude, Gemini, Lovable
+- Ring 2 (360px) — 6: Midjourney, Runway, ElevenLabs, HeyGen, Cursor, Grok
+- Ring 3 (480px) — 7: Perplexity, Replit, Bolt.new, Leonardo AI, Notion AI, Suno AI, Canva AI
+- Ring 4 (outer, 600px) — 8: Flow, Nano Banana, Google AI Studio, Synthesia, Pika Labs, Stability AI, N8N, Zapier AI, DeepSeek
 
-Body background already has radial glows — extend with a subtle noise SVG data-URI overlay.
+Alternating CW/CCW orbits with counter-rotation on each chip so logos stay upright (existing pattern).
 
-### 2. New components (`src/components/site/hero/`)
+### 3. Chip visual treatment
+- 40px glass circle, `backdrop-blur`, 1px inner border `oklch(1 0 0 / 18%)`
+- Brand-color tinted glow: `box-shadow: 0 0 18px <brand>/45%`
+- Hover: scale 1.15, intensified glow, ring rotation pauses via `group-hover:[animation-play-state:paused]`, name label fades in beside chip
+- 3 featured chips (ChatGPT, Claude, Lovable) get continuous `animate-pulse-glow`
+- Icons 18px; monogram 11px bold
 
-Split the hero into focused pieces so `routes/index.tsx` stays readable:
+### 4. Orbit paths
+Reuse existing `animate-orbit-cw-1/2`, `animate-orbit-ccw-1/2`. Add `-3` and `-4` variants in `styles.css` with longer durations (90s, 120s) so outer rings don't sprint. Add faint dashed stroke on rings 3 & 4 for orbit visibility.
 
-- `SpaceHero.tsx` — wrapper, full-viewport, layers + grid
-- `Starfield.tsx` — 80–120 absolutely-positioned twinkling dots, generated once with `useMemo`
-- `NebulaLayer.tsx` — 2–3 large blurred radial gradients drifting slowly
-- `MouseSpotlight.tsx` — radial gradient that follows pointer (CSS variables + `pointermove`); disabled on touch
-- `MissionOrb.tsx` — circular glass orb with rotating ring + animated SVG progress ring (1,25,000 / 1,000,000)
-- `FloatingStat.tsx` — small glass card (used for 10K+ Students, 500+ Projects, 98% Success, 50+ Countries)
-- `OrbitSystem.tsx` — central AI core + 4 orbit rings with avatars
-  - Central core: glowing moon sphere (radial gradients + pulse)
-  - Orbits: 4 rings, alternating CW/CCW, varying durations (18s/26s/34s/44s)
-  - Avatars: counter-rotate each item so faces stay upright
-  - Use existing portrait `coach-rony-portrait.png` as the central element fallback OR keep moon and place portrait small in center
+### 5. Performance
+- Pure CSS transforms (no JS per-frame)
+- SVG inlined from `simple-icons` (zero network requests)
+- `prefers-reduced-motion`: pause orbit animations
+- Mobile (<768px): drop ring 4, shrink rings to 200/300/400, 32px chips, cap items per ring at 5 — keeps DOM ~14 chips on phone vs 25 on desktop
+- Memoize icon path lookups
 
-All animations via Framer Motion (already installed) + CSS keyframes for infinite orbits. No GSAP/Three.js — pure CSS/SVG keeps the bundle light and works on edge SSR.
+### 6. Background polish
+Add 6–8 slow-drifting brand-colored particle dots (pure CSS, absolute) inside `OrbitSystem` for depth. `Starfield` and `NebulaLayer` remain unchanged.
 
-### 3. Hero structure (rewrites only the hero `<section>` in `src/routes/index.tsx`)
+### 7. Files
 
 ```text
-<SpaceHero>                          // 100vh, overflow hidden
-  <Starfield/> <NebulaLayer/> <MouseSpotlight/> <NoiseOverlay/>
-
-  <div grid: 45% / 55% on lg, stacked on mobile>
-
-    LEFT (45%)
-      • Glass pill: "🚀 Future of AI Learning"
-      • H1: "Learn AI & Build Digital Products For The Future"
-        - "AI", "Future", "Digital Products" use text-gradient + glow
-      • Subtitle paragraph (Bangla + English mix, matches site tone)
-      • CTA row: [Start Learning — neon] [Watch Demo — glass]
-      • MissionOrb + 4 FloatingStat cards arranged around it
-
-    RIGHT (55%)
-      • OrbitSystem
-        - Central moon/AI core
-        - 4 orbit rings, avatars + small planets/icons on paths
-        - Floating code-snippet glass chip + AI icon chips
-  </div>
-</SpaceHero>
+src/components/site/hero/
+  OrbitSystem.tsx     (rewrite: 4 rings, 25 tools, hover + pulse logic)
+  AiToolChip.tsx      (new: glass chip with icon/monogram + glow + label)
+  ai-tools.ts         (new: AI_TOOLS data + ring distribution)
+src/styles.css        (+ orbit-cw-3/4, orbit-ccw-3/4 keyframes; tool-glow utility)
+package.json          (+ simple-icons)
 ```
 
-The existing nav (`Header.tsx`) stays — no changes there unless you want navbar restyled too (ask below).
+`SpaceHero.tsx`, `Starfield.tsx`, `NebulaLayer.tsx`, center portrait, and the rest of the page remain untouched.
 
-### 4. Sections below the hero
-Keep STATS / ABOUT / SERVICES / PROGRAMS / PORTFOLIO / TESTIMONIALS / LEAD as-is. Only the hero changes.
-
-### 5. Responsive behavior
-- `lg+`: side-by-side 45/55 grid, full orbit system, mouse spotlight on
-- `md`: stacked, orbit system scaled to 70%, fewer floating chips
-- `sm`: text → CTAs → mission orb → simplified single-ring orbit; starfield reduced to ~40 dots; mouse spotlight disabled
-
-### 6. Performance & SSR notes
-- `Starfield` and orbit positions generated with `useMemo` for stability across renders
-- Use `prefers-reduced-motion` to pause orbits and floats
-- All animation purely transform/opacity for GPU compositing
-- No new npm packages required
-
-### 7. Files touched
-- create: `src/components/site/hero/SpaceHero.tsx`, `Starfield.tsx`, `NebulaLayer.tsx`, `MouseSpotlight.tsx`, `MissionOrb.tsx`, `FloatingStat.tsx`, `OrbitSystem.tsx`
-- edit: `src/routes/index.tsx` (replace hero `<section>`, keep rest), `src/styles.css` (add tokens + keyframes)
-
----
-
-### Open questions before I build
-
-1. **Central orbit element** — keep the moon/AI core as the center, OR put your portrait inside the moon? (Right now the portrait is the center of the current hero.)
-2. **Navbar** — restyle Header to match space theme (neon glow logo, glass nav), or leave it as-is?
-3. **Avatars on orbits** — use generated placeholder gradient circles, or do you want to upload student photos / brand logos?
-4. **Mission counter** — "1,25,000 / 1,000,000" as in spec, or use your real number?
+### 8. Acceptance
+- Center portrait identical to current
+- 25 brand chips on desktop, ~14 on mobile, no overlap
+- Smooth 60fps orbit, no jank on mid-range mobile
+- Hover any chip → glow intensifies, ring pauses, name appears
+- Reduced-motion users see static positioned chips
+- No new network requests (icons inlined)
