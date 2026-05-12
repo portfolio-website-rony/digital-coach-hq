@@ -5,13 +5,8 @@
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-// Build for Vercel: disable the Cloudflare plugin so TanStack Start's `vercel`
-// target writes its output to `.vercel/output` (Build Output API) instead of
-// the Cloudflare Worker bundle in `dist/`.
 export default defineConfig({
-  cloudflare: false,
   tanstackStart: {
-    target: "vercel",
     server: { entry: "server" },
   },
 });
