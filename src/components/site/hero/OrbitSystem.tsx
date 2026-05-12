@@ -106,31 +106,20 @@ export function OrbitSystem() {
         />
       </div>
 
-      {/* Center moon / portrait — UNCHANGED */}
+      {/* Center portrait */}
       <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
         <div className="relative h-44 w-44 sm:h-52 sm:w-52">
-          <div className="absolute inset-0 rounded-full bg-gradient-orb shadow-moon animate-pulse-glow" />
-          <div
-            aria-hidden
-            className="absolute inset-0 rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle at 70% 75%, oklch(0.15 0.05 270 / 55%), transparent 55%)",
-            }}
-          />
-          <img
-            src={coachPortrait}
-            alt="CoachRony"
-            className="absolute inset-3 rounded-full object-cover"
-            style={{
-              WebkitMaskImage:
-                "radial-gradient(circle at 50% 45%, black 55%, transparent 78%)",
-              maskImage:
-                "radial-gradient(circle at 50% 45%, black 55%, transparent 78%)",
-              opacity: 0.92,
-            }}
-            draggable={false}
-          />
+          {/* Glow halo behind */}
+          <div className="absolute -inset-3 rounded-full bg-gradient-orb opacity-60 blur-2xl animate-pulse-glow" />
+          {/* Portrait */}
+          <div className="relative h-full w-full overflow-hidden rounded-full border-2 border-white/20 shadow-moon">
+            <img
+              src={coachPortrait}
+              alt="CoachRony"
+              className="h-full w-full object-cover"
+              draggable={false}
+            />
+          </div>
         </div>
       </div>
 
