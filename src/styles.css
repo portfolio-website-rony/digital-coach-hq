@@ -47,10 +47,18 @@
   --animate-orbit-cw-2: orbit-cw 34s linear infinite;
   --animate-orbit-ccw-1: orbit-ccw 26s linear infinite;
   --animate-orbit-ccw-2: orbit-ccw 44s linear infinite;
+  --animate-orbit-cw-3: orbit-cw 70s linear infinite;
+  --animate-orbit-ccw-3: orbit-ccw 90s linear infinite;
+  --animate-orbit-cw-4: orbit-cw 110s linear infinite;
+  --animate-orbit-ccw-4: orbit-ccw 130s linear infinite;
   --animate-counter-cw-1: orbit-ccw 18s linear infinite;
   --animate-counter-cw-2: orbit-ccw 34s linear infinite;
   --animate-counter-ccw-1: orbit-cw 26s linear infinite;
   --animate-counter-ccw-2: orbit-cw 44s linear infinite;
+  --animate-counter-cw-3: orbit-ccw 70s linear infinite;
+  --animate-counter-ccw-3: orbit-cw 90s linear infinite;
+  --animate-counter-cw-4: orbit-ccw 110s linear infinite;
+  --animate-counter-ccw-4: orbit-cw 130s linear infinite;
 }
 
 :root {
