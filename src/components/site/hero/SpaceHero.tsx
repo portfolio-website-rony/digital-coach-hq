@@ -57,13 +57,17 @@ export function SpaceHero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.05 }}
-            className="mt-5 font-display text-4xl font-bold leading-[1.05] sm:text-5xl xl:text-6xl"
+            className="mt-5 font-display text-4xl font-bold leading-[1.1] sm:text-5xl xl:text-6xl"
           >
-            Learn <span className="text-gradient glow-text">AI</span> &
-            <br />
-            Build <span className="text-gradient glow-text">Digital Products</span>
-            <br />
-            For The <span className="text-gradient glow-text">Future</span>
+            <span className="block sm:inline">
+              Learn <span className="text-gradient glow-text">AI</span> &{" "}
+              <span className="text-gradient glow-text">Build</span>
+            </span>
+            <span className="hidden sm:inline"><br /></span>
+            <span className="block sm:inline">
+              <span className="text-gradient glow-text sm:text-foreground sm:[-webkit-text-fill-color:unset]">Digital Products</span>{" "}
+              For The <span className="text-gradient glow-text">Future</span>
+            </span>
           </motion.h1>
 
           <motion.p
