@@ -70,7 +70,7 @@ export function SpaceHero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg"
+            className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg"
           >
             Helping creators, freelancers, and students master AI, websites, and digital business
             through futuristic learning experiences. শুরু করুন আজই —{" "}
@@ -81,7 +81,7 @@ export function SpaceHero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-8 flex flex-wrap gap-3"
+            className="mt-8 flex flex-wrap justify-center gap-3"
           >
             <Link
               to="/free-class"
