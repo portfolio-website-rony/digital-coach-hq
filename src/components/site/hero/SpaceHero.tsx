@@ -124,7 +124,7 @@ export function SpaceHero() {
               delay={0.1}
             />
             <FloatingStat
-              value="500+"
+              value="5K+"
               label="Projects"
               icon={<GraduationCap className="h-4 w-4" />}
               delay={0.25}
