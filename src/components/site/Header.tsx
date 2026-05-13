@@ -20,7 +20,7 @@ export function Header() {
       <div className="glass-strong border-b border-white/10">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
           <Link to="/" className="flex items-center" aria-label="Coachrony Academy">
-            <img src={logo} alt="Coachrony Academy" className="h-8 w-auto sm:h-9" />
+            <img src={logo} alt="Coachrony Academy" className="h-10 w-auto sm:h-12" />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex">
