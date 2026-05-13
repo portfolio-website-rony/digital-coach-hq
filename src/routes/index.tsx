@@ -161,11 +161,11 @@ function Home() {
             </div>
           );
           return (
-            <div className="space-y-5 marquee-mask overflow-hidden">
-              <div className="flex w-max gap-5 animate-marquee-right">
+            <div className="group/marquee space-y-5 marquee-mask overflow-hidden">
+              <div className="flex w-max gap-5 animate-marquee-right group-hover/marquee:[animation-play-state:paused]">
                 {[...rowA, ...rowA].map((t, i) => renderCard(t, `a-${i}`))}
               </div>
-              <div className="flex w-max gap-5 animate-marquee-left">
+              <div className="flex w-max gap-5 animate-marquee-left group-hover/marquee:[animation-play-state:paused]">
                 {[...rowB, ...rowB].map((t, i) => renderCard(t, `b-${i}`))}
               </div>
             </div>
