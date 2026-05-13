@@ -94,10 +94,9 @@ function About() {
               আমি কে — <span className="text-gradient">CoachRony</span>
             </h1>
             <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-              আমি <b className="text-foreground">CoachRony</b> — AI Content Creation, Digital Products,
-              Website Design, Vibe Coding এবং Online Business Setup নিয়ে কাজ করি। বিভিন্ন Digital Brand,
-              Creator Business এবং Online Education Project এর সাথে কাজ করেছি এবং AI ব্যবহার করে
-              <b className="text-foreground"> Modern Online Business System</b> তৈরি করতে সাহায্য করছি।
+              আমি <b className="text-foreground">CoachRony</b> — AI Content Creation, Website Design,
+              Vibe Coding এবং Digital Business Setup নিয়ে কাজ করি। AI এবং Modern Technology ব্যবহার করে
+              মানুষকে <b className="text-foreground">Skill, Brand এবং Online Income</b> তৈরি করতে সাহায্য করছি।
             </p>
 
             <div>
