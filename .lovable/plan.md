@@ -1,68 +1,40 @@
 ## Goal
-Build a premium, futuristic "আমি কে — CoachRony" About section on `/about` with image + intro side-by-side, glow/glass effects, animated skill cards, and social proof badges.
+"Students ও clients বলছেন" সেকশনটাকে static 2-column grid থেকে **continuous auto-scrolling marquee** এ রূপান্তর করা — দুই row, একটা ডানে, একটা বামে, আস্তে আস্তে চলতে থাকবে।
 
 ## Changes
 
-### `src/routes/about.tsx` — full rewrite
-Replace current About page with a richer composition (still uses existing `Section`, `GlassCard`, `STATS`, `SKILLS` tokens).
+### 1. `src/lib/site-data.ts`
+- `TESTIMONIALS` array কে ৪ → **8–10 entries** এ বাড়ানো হবে (smooth loop-এর জন্য বেশি কার্ড লাগবে), realistic Bengali quotes দিয়ে। প্রতিটার `name`, `role`, `quote` থাকবে।
 
-**Layout (sections top → bottom):**
+### 2. `src/styles.css`
+নতুন keyframes এবং utility classes যোগ:
+```css
+@keyframes marquee-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+@keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.animate-marquee-left  { animation: marquee-left  60s linear infinite; }
+.animate-marquee-right { animation: marquee-right 60s linear infinite; }
+.marquee-mask { mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); }
+```
+Hover এ `[animation-play-state:paused]` (optional)।
 
-1. **Hero intro split** (`grid lg:grid-cols-2`)
-   - **Left:** Profile image card
-     - Placeholder `src/assets/coach-rony-portrait.webp` (already exists) — user will swap later
-     - Wrapped in glassmorphism frame: `glass-strong rounded-3xl p-2`
-     - Outer glow: gradient blur halo (`bg-gradient-primary blur-3xl opacity-40`) behind image
-     - Floating corner accent chips ("AI Creator", "Coach") with `animate-float`
-     - Subtle border with `shadow-glow` and `neon-border` variant in brand orange
-   - **Right:** Intro
-     - Eyebrow chip: "About Me"
-     - H1: `আমি কে — <span text-gradient>CoachRony</span>`
-     - Lead paragraph (Bengali content provided by user, first paragraph)
-     - "আমি মূলত:" label
-     - Skill chip grid (7 items) — small animated cards with icon + label, hover lift + glow
-     - Closing mission paragraph (last paragraph)
-     - CTA row: "Book a Call" (primary) + "View Courses" (ghost)
+### 3. `src/routes/index.tsx` — TESTIMONIALS section
+2-col grid রিপ্লেস হবে দুটো marquee row দিয়ে:
+- **Row 1 (top)** — `animate-marquee-right` (ডান দিকে চলবে), TESTIMONIALS-এর প্রথম অর্ধেক, **2x duplicated** seamless loop-এর জন্য।
+- **Row 2 (bottom)** — `animate-marquee-left` (বাম দিকে চলবে), দ্বিতীয় অর্ধেক, একইভাবে duplicated।
+- Outer wrapper-এ `overflow-hidden marquee-mask` (edge fade)।
+- প্রতিটা card existing `GlassCard` styling রাখবে, fixed width `w-[320px] sm:w-[380px]` + `shrink-0`, gap `gap-5`।
+- `flex w-max` inner track যাতে animation translateX করে infinite মনে হয়।
 
-2. **Social proof badges strip**
-   - 4 glass pill badges: "৫০K+ Students", "১০০+ Brands", "৫+ Years", "AI Certified"
-   - Use `STATS` from site-data where overlap, plus 1–2 hardcoded trust badges
-   - Horizontal row, gold-accent border (`border-gold-soft`), `shadow-gold`
+## Layout sketch
+```text
+┌─ overflow-hidden + edge fade mask ─────────────┐
+│  [card][card][card][card]... → (scrolls right) │
+│  [card][card][card][card]... ← (scrolls left)  │
+└────────────────────────────────────────────────┘
+```
 
-3. **Skills/expertise cards grid** (`sm:grid-cols-2 lg:grid-cols-4`)
-   - 7 cards (one per skill from user content): AI Content Creation, Website & Landing Page Design, Digital Product Business, AI Automation, Personal Branding, Facebook Marketing, Vibe Coding
-   - Each card: lucide icon (Sparkles, Layout, ShoppingBag, Bot, User, Megaphone, Code2), title, 1-line description
-   - `GlassCard` with hover glow + `framer-motion` `whileInView` fade-up stagger
-   - Floating gradient blob behind grid for depth
-
-4. **Mission CTA band**
-   - Full-width glass card, gold gradient text headline
-   - "Let's build your AI-powered brand together"
-   - Buttons: Book a Call → `/book`, See Courses → `/courses`
-
-**Animations (framer-motion):**
-- `whileInView` fade-up for each block (already pattern in `Section`)
-- Stagger on skill cards (delay index * 0.08)
-- Floating glow orbs using existing `animate-float`, `animate-blob` utilities
-- Smooth scroll already enabled via `html { scroll-behavior: smooth }`
-
-**Design tokens (all from `src/styles.css`):**
-- `glass`, `glass-strong`, `neon-border`, `text-gradient`, `text-gold-gradient`
-- `shadow-glow`, `shadow-glow-blue`, `shadow-gold`, `shadow-moon`
-- `bg-gradient-primary`, `border-gold-soft`
-- No custom color classes — fully themed
-
-**Responsive:**
-- `lg:grid-cols-2` collapses to single column on mobile
-- Image card centers on mobile, max-w-sm
-- Skill grid: 1 → 2 → 4 columns
-- Padding/typography scales via `sm:` `md:` breakpoints
-
-**SEO `head()`** — keep existing meta, slightly polish description for new content.
-
-### No other files touched
-- `STATS`, `SKILLS` reused from `src/lib/site-data.ts` (no edit)
-- No new components extracted (single-route composition keeps it simple); if it grows >300 lines, will extract `<AboutHero/>` + `<SkillGrid/>` into `src/components/site/about/`
-
-## Result
-A premium, conversion-focused About page: glowing profile image with glass frame, clean Bengali intro, animated skill cards, gold social proof strip, and a closing CTA — all responsive and on-brand.
+## Notes
+- Pure CSS animation, no JS / no extra dependency।
+- Speed slow (~60s per loop) — user বলেছে "আস্তে আস্তে"।
+- Mobile-এ একই কাজ করবে; cards same width, smooth।
+- কোনো অন্য সেকশন বা business logic touch হচ্ছে না।
