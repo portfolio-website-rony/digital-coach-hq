@@ -141,21 +141,36 @@ function Home() {
         eyebrow="Testimonials"
         title="Students ও clients বলছেন"
       >
-        <div className="grid gap-5 md:grid-cols-2">
-          {TESTIMONIALS.map((t) => (
-            <GlassCard key={t.name}>
-              <Quote className="h-6 w-6 text-primary-glow" />
-              <p className="mt-3 text-sm leading-relaxed">{t.quote}</p>
-              <div className="mt-4 flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-gradient-primary" />
-                <div>
-                  <div className="text-sm font-semibold">{t.name}</div>
-                  <div className="text-xs text-muted-foreground">{t.role}</div>
+        {(() => {
+          const half = Math.ceil(TESTIMONIALS.length / 2);
+          const rowA = TESTIMONIALS.slice(0, half);
+          const rowB = TESTIMONIALS.slice(half);
+          const renderCard = (t: typeof TESTIMONIALS[number], k: string) => (
+            <div key={k} className="w-[300px] shrink-0 sm:w-[360px]">
+              <GlassCard>
+                <Quote className="h-6 w-6 text-primary-glow" />
+                <p className="mt-3 text-sm leading-relaxed">{t.quote}</p>
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-gradient-primary" />
+                  <div>
+                    <div className="text-sm font-semibold">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.role}</div>
+                  </div>
                 </div>
+              </GlassCard>
+            </div>
+          );
+          return (
+            <div className="space-y-5 marquee-mask overflow-hidden">
+              <div className="flex w-max gap-5 animate-marquee-right">
+                {[...rowA, ...rowA].map((t, i) => renderCard(t, `a-${i}`))}
               </div>
-            </GlassCard>
-          ))}
-        </div>
+              <div className="flex w-max gap-5 animate-marquee-left">
+                {[...rowB, ...rowB].map((t, i) => renderCard(t, `b-${i}`))}
+              </div>
+            </div>
+          );
+        })()}
       </Section>
 
       {/* LEAD CAPTURE */}
