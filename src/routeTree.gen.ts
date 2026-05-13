@@ -11,11 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as FreeClassRouteImport } from './routes/free-class'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -43,6 +46,11 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -66,6 +74,16 @@ const PortfolioRoute = PortfolioRouteImport.update({
 const FreeClassRoute = FreeClassRouteImport.update({
   id: '/free-class',
   path: '/free-class',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoursesRoute = CoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -154,11 +172,14 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRoute
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
+  '/events': typeof EventsRoute
   '/free-class': typeof FreeClassRoute
   '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
   '/services': typeof ServicesRoute
+  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin': typeof AdminAdminRouteWithChildren
@@ -178,11 +199,14 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRoute
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
+  '/events': typeof EventsRoute
   '/free-class': typeof FreeClassRoute
   '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
   '/services': typeof ServicesRoute
+  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin': typeof AdminAdminRouteWithChildren
@@ -204,11 +228,14 @@ export interface FileRoutesById {
   '/blog': typeof BlogRoute
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
+  '/events': typeof EventsRoute
   '/free-class': typeof FreeClassRoute
   '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
   '/services': typeof ServicesRoute
+  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/_admin/admin': typeof AdminAdminRouteWithChildren
@@ -230,11 +257,14 @@ export interface FileRouteTypes {
     | '/blog'
     | '/book'
     | '/contact'
+    | '/courses'
+    | '/events'
     | '/free-class'
     | '/portfolio'
     | '/privacy'
     | '/programs'
     | '/services'
+    | '/shop'
     | '/terms'
     | '/thank-you'
     | '/admin'
@@ -254,11 +284,14 @@ export interface FileRouteTypes {
     | '/blog'
     | '/book'
     | '/contact'
+    | '/courses'
+    | '/events'
     | '/free-class'
     | '/portfolio'
     | '/privacy'
     | '/programs'
     | '/services'
+    | '/shop'
     | '/terms'
     | '/thank-you'
     | '/admin'
@@ -279,11 +312,14 @@ export interface FileRouteTypes {
     | '/blog'
     | '/book'
     | '/contact'
+    | '/courses'
+    | '/events'
     | '/free-class'
     | '/portfolio'
     | '/privacy'
     | '/programs'
     | '/services'
+    | '/shop'
     | '/terms'
     | '/thank-you'
     | '/_admin/admin'
@@ -305,11 +341,14 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRoute
   BookRoute: typeof BookRoute
   ContactRoute: typeof ContactRoute
+  CoursesRoute: typeof CoursesRoute
+  EventsRoute: typeof EventsRoute
   FreeClassRoute: typeof FreeClassRoute
   PortfolioRoute: typeof PortfolioRoute
   PrivacyRoute: typeof PrivacyRoute
   ProgramsRoute: typeof ProgramsRoute
   ServicesRoute: typeof ServicesRoute
+  ShopRoute: typeof ShopRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -330,6 +369,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -365,6 +411,20 @@ declare module '@tanstack/react-router' {
       path: '/free-class'
       fullPath: '/free-class'
       preLoaderRoute: typeof FreeClassRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses': {
+      id: '/courses'
+      path: '/courses'
+      fullPath: '/courses'
+      preLoaderRoute: typeof CoursesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -523,11 +583,14 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRoute,
   BookRoute: BookRoute,
   ContactRoute: ContactRoute,
+  CoursesRoute: CoursesRoute,
+  EventsRoute: EventsRoute,
   FreeClassRoute: FreeClassRoute,
   PortfolioRoute: PortfolioRoute,
   PrivacyRoute: PrivacyRoute,
   ProgramsRoute: ProgramsRoute,
   ServicesRoute: ServicesRoute,
+  ShopRoute: ShopRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   AdminLoginRoute: AdminLoginRoute,
