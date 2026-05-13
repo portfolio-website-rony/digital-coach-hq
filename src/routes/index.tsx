@@ -16,13 +16,26 @@ function Home() {
 
       {/* STATS */}
       <Section className="!py-12">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {STATS.map((s) => (
-            <GlassCard key={s.label} className="text-center" hover={false}>
-              <div className="text-3xl font-bold text-gradient">{s.value}</div>
-              <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
-            </GlassCard>
-          ))}
+        <div className="border-gold-soft shadow-gold mx-auto rounded-2xl bg-[oklch(0.05_0.02_270)]/80 p-2 backdrop-blur-md sm:p-3">
+          <div className="grid grid-cols-2 divide-y divide-[oklch(0.78_0.13_75/0.18)] sm:grid-cols-3 sm:divide-y-0 lg:grid-cols-5">
+            {STATS.map((s, i) => (
+              <div
+                key={s.label}
+                className={`relative px-4 py-5 text-center sm:px-6 sm:py-6 ${
+                  i !== STATS.length - 1
+                    ? "lg:after:absolute lg:after:right-0 lg:after:top-1/2 lg:after:h-12 lg:after:w-px lg:after:-translate-y-1/2 lg:after:bg-gold-divider"
+                    : ""
+                }`}
+              >
+                <div className="font-display text-2xl font-bold tracking-tight text-gold-gradient sm:text-3xl lg:text-[1.75rem] xl:text-3xl">
+                  {s.value}
+                </div>
+                <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-foreground/80 sm:text-xs">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
