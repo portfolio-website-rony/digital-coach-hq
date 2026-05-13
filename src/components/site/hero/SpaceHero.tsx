@@ -4,7 +4,7 @@ import { ArrowRight, Play, Rocket, Users, Trophy, Globe2, GraduationCap } from "
 import { Starfield } from "./Starfield";
 import { NebulaLayer } from "./NebulaLayer";
 import { MouseSpotlight } from "./MouseSpotlight";
-import { MissionOrb } from "./MissionOrb";
+
 import { FloatingStat } from "./FloatingStat";
 import { OrbitSystem } from "./OrbitSystem";
 
