@@ -115,35 +115,32 @@ export function SpaceHero() {
             </Link>
           </motion.div>
 
-          {/* mission + floating stats */}
-          <div className="mt-12 grid w-full items-center gap-6 sm:grid-cols-[auto_1fr]">
-            <MissionOrb current={125000} goal={1000000} />
-            <div className="grid grid-cols-2 gap-3">
-              <FloatingStat
-                value="10K+"
-                label="Students"
-                icon={<Users className="h-4 w-4" />}
-                delay={0.1}
-              />
-              <FloatingStat
-                value="500+"
-                label="Projects"
-                icon={<GraduationCap className="h-4 w-4" />}
-                delay={0.25}
-              />
-              <FloatingStat
-                value="98%"
-                label="Success Rate"
-                icon={<Trophy className="h-4 w-4" />}
-                delay={0.4}
-              />
-              <FloatingStat
-                value="50+"
-                label="Countries"
-                icon={<Globe2 className="h-4 w-4" />}
-                delay={0.55}
-              />
-            </div>
+          {/* floating stats */}
+          <div className="mt-12 grid w-full grid-cols-2 gap-3 sm:grid-cols-4">
+            <FloatingStat
+              value="10K+"
+              label="Students"
+              icon={<Users className="h-4 w-4" />}
+              delay={0.1}
+            />
+            <FloatingStat
+              value="500+"
+              label="Projects"
+              icon={<GraduationCap className="h-4 w-4" />}
+              delay={0.25}
+            />
+            <FloatingStat
+              value="98%"
+              label="Success Rate"
+              icon={<Trophy className="h-4 w-4" />}
+              delay={0.4}
+            />
+            <FloatingStat
+              value="50+"
+              label="Countries"
+              icon={<Globe2 className="h-4 w-4" />}
+              delay={0.55}
+            />
           </div>
         </div>
       </div>
