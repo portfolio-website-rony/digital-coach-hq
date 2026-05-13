@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles, Facebook, Youtube, Instagram, Mail } from "lucide-react";
+import { Facebook, Youtube, Instagram, Mail } from "lucide-react";
+import logo from "@/assets/logo-coachrony.png";
 
 export function Footer() {
   return (
