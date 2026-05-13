@@ -8,9 +8,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="inline-flex items-center rounded-lg bg-white px-3 py-1.5 shadow-card">
-              <img src={logo} alt="Coachrony Academy" className="h-8 w-auto" />
-            </div>
+            <img src={logo} alt="Coachrony Academy" className="h-9 w-auto" />
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
               AI দিয়ে নিজের স্কিল, ব্র্যান্ড ও ইনকাম তৈরি করুন। Content, Vibe Coding, Digital
               Products ও Online Business — সব এক জায়গায়।
