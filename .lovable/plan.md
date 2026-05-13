@@ -1,37 +1,36 @@
 ## Goal
+Coachrony Academy logo সাইটের Header ও Footer-এ add করা — current "Sparkles + CoachRony" wordmark replace করে।
 
-লোগোর vibe (bold black + vibrant orange "BRIGHT YOUR SKILLS" accent, clean strong sans-serif) সাইটের সাথে align করা — কিন্তু existing structure, sections, hero animations, gold stat bar — সবই আগের মতো থাকবে, শুধু color language ও typography ব্র্যান্ডের সাথে মিলবে।
+## Issue & Solution
+Logo image কালো text on white/transparent bg, কিন্তু সাইট dark theme। তাই CSS filter `invert + brightness` দিয়ে logo-কে light variant-এ render করব (text white, "BRIGHT YOUR SKILLS" portion-এর orange auto preserve হবে না — তাই simple invert করলে orange-ও invert হবে → blue হয়ে যাবে)।
+
+**Better approach:** logo PNG-এ filter ছাড়াই use করব, কিন্তু Header glass-strong bg-এর উপর কালো text পড়বে না।
+
+**Final approach:** logo PNG-কে `filter: invert(1) hue-rotate(180deg)` use করলে black→white, orange→blue হয়। সেটাও না।
+
+**Best & cleanest:** logo SVG/PNG দুই version লাগে। যেহেতু একটাই আছে → আমি image-কে `mix-blend-mode: screen` বা simply white background pill-এর উপর place করব না (ব্র্যান্ড এ cluttered দেখাবে)।
+
+→ Solution: logo image-কে **invert(1)** করব (black→white), তারপর orange portion আলাদা ভাবে preserve সম্ভব না। তাই pure invert করে whole logo white-on-dark করব। "BRIGHT YOUR SKILLS"-এর orange accent টা lose হবে — কিন্তু wordmark-টা clean থাকবে।
 
 ## Changes
 
-### 1. `src/styles.css` — Brand color tokens
-- `--primary` purple → **brand orange** `oklch(0.7 0.2 40)` (logo-র orange-red)
-- `--primary-glow` → lighter warm orange `oklch(0.8 0.18 50)`
-- `--accent` blue → **deep ink/charcoal** `oklch(0.25 0.02 270)` (logo black)
-- `--accent-glow` → soft warm white
-- `--ring` → orange
-- `--gradient-primary` → orange → warm amber
-- `--shadow-glow` → orange glow
-- Background gradient radial spots: tone down purple/blue, add subtle warm orange wash at top
-- Keep gold/bronze stat bar tokens as-is (complements orange beautifully)
+### 1. Asset
+- `code--copy user-uploads://image-8.png` → `src/assets/logo-coachrony.png`
 
-### 2. Typography
-- `--font-display`: keep Poppins but bump weight usage to **800/900** in headings for the "bold block" logo feel
-- Add tighter letter-spacing on h1 (`-0.04em`) for that compressed logo energy
-- No font swap needed — Poppins Black already matches the logo's geometric sans
+### 2. `src/components/site/Header.tsx`
+- Sparkles + "CoachRony" wordmark replace
+- `<img src={logo} alt="Coachrony Academy" className="h-9 w-auto invert brightness-0 contrast-200" />` — wait, that strips orange too
+- Use: `className="h-10 w-auto"` with CSS filter that inverts only dark pixels: `style={{ filter: 'invert(1)' }}` — converts black→white, the orange becomes a complementary cyan-ish though
+- **Decision:** apply `filter: invert(1)` accepting orange→cyan tradeoff, OR keep image as-is with a subtle white pill background `bg-white/95 px-3 py-1.5 rounded-lg`
+- **Going with white pill** — preserves brand orange exactly as designed, looks like an official brand badge
 
-### 3. Hero / sections
-- No structural changes
-- Existing `.text-gradient` automatically picks up new orange gradient
-- Neon purple/blue shadow utilities → keep but reduce usage where they clash; primary glows now read as warm orange
-- Logo wordmark (if used in `Header`) gets the orange "BRIGHT YOUR SKILLS"-style treatment via existing accent token
+### 3. `src/components/site/Footer.tsx`
+- Same replacement: white pill containing the logo image
 
 ### 4. Untouched
-- All routes, components, copy, layouts, hero animations, gold stat bar, SpaceHero structure
-- Bengali content
-- Section order
+- All other content, colors, layouts, routes
 
 ## Result
-Same premium space-aesthetic site, but the dominant glow shifts from purple/blue → **brand orange + black**, matching the logo identity. Gold stat bar still reads premium because warm orange + gold + black is a cohesive palette.
+Header ও Footer-এ official Coachrony Academy logo (orange "BRIGHT YOUR SKILLS" intact) একটা subtle white rounded pill-এর ভিতরে — branded badge feel।
 
 Approve to apply.

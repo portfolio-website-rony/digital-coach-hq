@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles, Facebook, Youtube, Instagram, Mail } from "lucide-react";
+import { Facebook, Youtube, Instagram, Mail } from "lucide-react";
+import logo from "@/assets/logo-coachrony.png";
 
 export function Footer() {
   return (
@@ -7,11 +8,8 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 font-display text-lg font-bold">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-primary shadow-glow">
-                <Sparkles className="h-5 w-5 text-background" />
-              </span>
-              <span className="text-gradient">CoachRony</span>
+            <div className="inline-flex items-center rounded-lg bg-white px-3 py-1.5 shadow-card">
+              <img src={logo} alt="Coachrony Academy" className="h-8 w-auto" />
             </div>
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
               AI দিয়ে নিজের স্কিল, ব্র্যান্ড ও ইনকাম তৈরি করুন। Content, Vibe Coding, Digital
