@@ -19,11 +19,10 @@ export function Header() {
     <header className="sticky top-0 z-40 w-full">
       <div className="glass-strong border-b border-white/10">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-          <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-primary shadow-glow">
-              <Sparkles className="h-5 w-5 text-background" />
+          <Link to="/" className="flex items-center" aria-label="Coachrony Academy">
+            <span className="inline-flex items-center rounded-lg bg-white px-3 py-1.5 shadow-card">
+              <img src={logo} alt="Coachrony Academy" className="h-7 w-auto sm:h-8" />
             </span>
-            <span className="text-gradient">CoachRony</span>
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex">
