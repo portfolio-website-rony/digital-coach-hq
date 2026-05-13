@@ -6,11 +6,9 @@ import logo from "@/assets/logo-coachrony.png";
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
-  { to: "/programs", label: "Programs" },
-  { to: "/portfolio", label: "Portfolio" },
-  { to: "/blog", label: "Blog" },
-  { to: "/contact", label: "Contact" },
+  { to: "/courses", label: "Courses" },
+  { to: "/events", label: "Events" },
+  { to: "/shop", label: "Shop" },
 ] as const;
 
 export function Header() {
