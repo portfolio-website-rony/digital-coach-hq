@@ -65,8 +65,9 @@ export const SKILLS = [
 ] as const;
 
 export const STATS = [
-  { value: "10K+", label: "Students Trained" },
+  { value: "259,200,000+", label: "Seconds Dedication" },
+  { value: "43,800+", label: "Hours Experience" },
+  { value: "10,000+", label: "Students Trained" },
   { value: "500+", label: "Projects Delivered" },
   { value: "50+", label: "AI Tools Mastered" },
-  { value: "5+", label: "Years Experience" },
 ] as const;
