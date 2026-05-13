@@ -24,9 +24,6 @@ export function SpaceHero() {
       <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-12 px-4 pt-28 pb-24 text-center sm:px-6 lg:pt-32">
         {/* TOP — orbit system */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.1 }}
           className="relative flex w-full items-center justify-center"
         >
           <div className="w-full max-w-[600px]">
@@ -45,18 +42,12 @@ export function SpaceHero() {
         {/* BELOW — text content */}
         <div className="relative z-10 flex flex-col items-center">
           <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
             className="glass-strong inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium text-primary-glow"
           >
             <Rocket className="h-3.5 w-3.5" /> Future of AI Learning
           </motion.span>
 
           <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.05 }}
             className="mt-5 font-display text-3xl font-bold leading-[1.15] sm:text-5xl xl:text-6xl"
           >
             <span className="block">
@@ -69,9 +60,6 @@ export function SpaceHero() {
           </motion.h1>
 
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-5 inline-flex items-center gap-2 rounded-full glass-strong px-4 py-2 shadow-neon-purple"
           >
             <span className="text-[10px] uppercase tracking-[0.25em] text-primary-glow">
@@ -84,9 +72,6 @@ export function SpaceHero() {
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
             className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg"
           >
             Helping creators, freelancers, and students master AI, websites, and digital business
@@ -95,9 +80,6 @@ export function SpaceHero() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-8 flex flex-wrap justify-center gap-3"
           >
             <Link
