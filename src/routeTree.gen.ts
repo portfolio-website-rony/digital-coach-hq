@@ -16,6 +16,7 @@ import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as FreeClassRouteImport } from './routes/free-class'
+import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -66,6 +67,11 @@ const PortfolioRoute = PortfolioRouteImport.update({
 const FreeClassRoute = FreeClassRouteImport.update({
   id: '/free-class',
   path: '/free-class',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoursesRoute = CoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -154,6 +160,7 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRoute
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
   '/free-class': typeof FreeClassRoute
   '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
@@ -178,6 +185,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRoute
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
   '/free-class': typeof FreeClassRoute
   '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
@@ -204,6 +212,7 @@ export interface FileRoutesById {
   '/blog': typeof BlogRoute
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
   '/free-class': typeof FreeClassRoute
   '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
@@ -230,6 +239,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/book'
     | '/contact'
+    | '/courses'
     | '/free-class'
     | '/portfolio'
     | '/privacy'
@@ -254,6 +264,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/book'
     | '/contact'
+    | '/courses'
     | '/free-class'
     | '/portfolio'
     | '/privacy'
@@ -279,6 +290,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/book'
     | '/contact'
+    | '/courses'
     | '/free-class'
     | '/portfolio'
     | '/privacy'
@@ -305,6 +317,7 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRoute
   BookRoute: typeof BookRoute
   ContactRoute: typeof ContactRoute
+  CoursesRoute: typeof CoursesRoute
   FreeClassRoute: typeof FreeClassRoute
   PortfolioRoute: typeof PortfolioRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -365,6 +378,13 @@ declare module '@tanstack/react-router' {
       path: '/free-class'
       fullPath: '/free-class'
       preLoaderRoute: typeof FreeClassRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses': {
+      id: '/courses'
+      path: '/courses'
+      fullPath: '/courses'
+      preLoaderRoute: typeof CoursesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -523,6 +543,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRoute,
   BookRoute: BookRoute,
   ContactRoute: ContactRoute,
+  CoursesRoute: CoursesRoute,
   FreeClassRoute: FreeClassRoute,
   PortfolioRoute: PortfolioRoute,
   PrivacyRoute: PrivacyRoute,
@@ -536,3 +557,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
