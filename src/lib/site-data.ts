@@ -56,6 +56,12 @@ export const TESTIMONIALS = [
   { name: "Nusrat Jahan", role: "Content Creator", quote: "Vibe coding bootcamp-এ join করে আমি নিজেই একটা SaaS launch করেছি।" },
   { name: "Rakib Hasan", role: "Business Owner", quote: "Facebook ads setup-এর পর আমার ROAS 1.8x থেকে 4.5x-এ গেছে।" },
   { name: "Sumaiya Akter", role: "Student", quote: "একদম zero থেকে শুরু করেছিলাম। এখন AI দিয়ে monthly income করছি।" },
+  { name: "Mahin Chowdhury", role: "YouTuber", quote: "Thumbnail ও script AI দিয়ে বানিয়ে আমার channel-এ subscriber দ্বিগুণ হয়েছে।" },
+  { name: "Farzana Rahman", role: "Entrepreneur", quote: "Landing page design course করে নিজের brand-এর website নিজেই বানিয়েছি।" },
+  { name: "Imran Hossain", role: "Digital Marketer", quote: "AI automation শিখে client-দের জন্য পুরো funnel automate করেছি।" },
+  { name: "Tasnim Akhi", role: "Course Creator", quote: "Digital product launch roadmap follow করে প্রথম মাসেই 100+ sale পেয়েছি।" },
+  { name: "Sajid Khan", role: "Agency Owner", quote: "Vibe coding দিয়ে clients-দের জন্য SaaS বানাচ্ছি — দ্রুত ও cost-effective।" },
+  { name: "Rumana Islam", role: "Personal Brand", quote: "Personal branding strategy follow করে LinkedIn-এ 20K+ followers হয়েছে।" },
 ] as const;
 
 export const SKILLS = [
