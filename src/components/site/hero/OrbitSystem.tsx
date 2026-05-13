@@ -118,6 +118,11 @@ export function OrbitSystem() {
               alt="CoachRony"
               className="h-full w-full object-cover"
               draggable={false}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              width={600}
+              height={600}
             />
           </div>
         </div>
