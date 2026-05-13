@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -43,6 +44,11 @@ const ThankYouRoute = ThankYouRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -173,6 +179,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
   '/services': typeof ServicesRoute
+  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin': typeof AdminAdminRouteWithChildren
@@ -199,6 +206,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
   '/services': typeof ServicesRoute
+  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/admin': typeof AdminAdminRouteWithChildren
@@ -227,6 +235,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/programs': typeof ProgramsRoute
   '/services': typeof ServicesRoute
+  '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/_admin/admin': typeof AdminAdminRouteWithChildren
@@ -255,6 +264,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/programs'
     | '/services'
+    | '/shop'
     | '/terms'
     | '/thank-you'
     | '/admin'
@@ -281,6 +291,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/programs'
     | '/services'
+    | '/shop'
     | '/terms'
     | '/thank-you'
     | '/admin'
@@ -308,6 +319,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/programs'
     | '/services'
+    | '/shop'
     | '/terms'
     | '/thank-you'
     | '/_admin/admin'
@@ -336,6 +348,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ProgramsRoute: typeof ProgramsRoute
   ServicesRoute: typeof ServicesRoute
+  ShopRoute: typeof ShopRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -356,6 +369,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -570,6 +590,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ProgramsRoute: ProgramsRoute,
   ServicesRoute: ServicesRoute,
+  ShopRoute: ShopRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   AdminLoginRoute: AdminLoginRoute,
