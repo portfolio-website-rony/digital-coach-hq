@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import coachPortrait from "@/assets/coach-rony-portrait.png";
+import coachPortrait from "@/assets/coach-rony-portrait.webp";
 import { RINGS, type AiTool } from "./ai-tools";
 import { AiToolChip } from "./AiToolChip";
 
@@ -118,6 +118,11 @@ export function OrbitSystem() {
               alt="CoachRony"
               className="h-full w-full object-cover"
               draggable={false}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              width={600}
+              height={600}
             />
           </div>
         </div>
