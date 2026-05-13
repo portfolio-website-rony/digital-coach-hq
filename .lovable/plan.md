@@ -1,49 +1,37 @@
 ## Goal
-Hero-এর নিচে যে STATS section আছে (10K+, 500+, 50+, 5+) সেটাকে প্রথম reference image-এর মতো একটা **premium horizontal bar** হিসেবে redesign করব — gold/amber বড় numbers, thin vertical separators, dark bordered container, এবং বড় impressive values (seconds, hours ইত্যাদি)।
 
-## Design Direction (inspired by reference)
-- একটা single rounded container, subtle amber/gold border, deep black background
-- ভিতরে 5টা stat cell, মাঝে thin vertical gold divider line
-- বড় serif-ish display number (gold gradient: amber → bronze)
-- নিচে ছোট uppercase-ish white label
-- "+" sign number-এর পাশে gold-tinted
+লোগোর vibe (bold black + vibrant orange "BRIGHT YOUR SKILLS" accent, clean strong sans-serif) সাইটের সাথে align করা — কিন্তু existing structure, sections, hero animations, gold stat bar — সবই আগের মতো থাকবে, শুধু color language ও typography ব্র্যান্ডের সাথে মিলবে।
 
-## New Stat Values (CoachRony কার্যক্রম-এর উপর based)
-বর্তমান STATS array থেকে inspire নিয়ে impressive বড় numbers calculate করব:
+## Changes
 
-| Value | Label | Logic |
-|---|---|---|
-| **259,200,000+** | Seconds Dedication | 5+ years × 365 × 24 × 60 × 60 (rounded) |
-| **43,800+** | Hours Experience | 5 years active coaching hours |
-| **10,000+** | Students Trained | existing |
-| **500+** | Projects Delivered | existing |
-| **50+** | AI Tools Mastered | existing |
+### 1. `src/styles.css` — Brand color tokens
+- `--primary` purple → **brand orange** `oklch(0.7 0.2 40)` (logo-র orange-red)
+- `--primary-glow` → lighter warm orange `oklch(0.8 0.18 50)`
+- `--accent` blue → **deep ink/charcoal** `oklch(0.25 0.02 270)` (logo black)
+- `--accent-glow` → soft warm white
+- `--ring` → orange
+- `--gradient-primary` → orange → warm amber
+- `--shadow-glow` → orange glow
+- Background gradient radial spots: tone down purple/blue, add subtle warm orange wash at top
+- Keep gold/bronze stat bar tokens as-is (complements orange beautifully)
 
-(যদি আপনি অন্য numbers/labels চান, plan approve করার সময় বলে দিতে পারেন।)
+### 2. Typography
+- `--font-display`: keep Poppins but bump weight usage to **800/900** in headings for the "bold block" logo feel
+- Add tighter letter-spacing on h1 (`-0.04em`) for that compressed logo energy
+- No font swap needed — Poppins Black already matches the logo's geometric sans
 
-## Files to Change
+### 3. Hero / sections
+- No structural changes
+- Existing `.text-gradient` automatically picks up new orange gradient
+- Neon purple/blue shadow utilities → keep but reduce usage where they clash; primary glows now read as warm orange
+- Logo wordmark (if used in `Header`) gets the orange "BRIGHT YOUR SKILLS"-style treatment via existing accent token
 
-### `src/lib/site-data.ts`
-- `STATS` array update — উপরের 5টা entry বসাব
+### 4. Untouched
+- All routes, components, copy, layouts, hero animations, gold stat bar, SpaceHero structure
+- Bengali content
+- Section order
 
-### `src/routes/index.tsx` — STATS section
-- বর্তমান `grid` of `GlassCard` সরিয়ে নতুন horizontal bar layout
-- Single rounded container, amber border, internal flex row with dividers
-- Mobile-এ 2-column wrap, desktop-এ single row 5 columns
+## Result
+Same premium space-aesthetic site, but the dominant glow shifts from purple/blue → **brand orange + black**, matching the logo identity. Gold stat bar still reads premium because warm orange + gold + black is a cohesive palette.
 
-### `src/styles.css`
-- নতুন token যোগ: `--gold` এবং `--gold-glow` (oklch), `--gradient-gold` (amber → bronze gradient)
-- Reusable utility class `.text-gold-gradient` এবং `.border-gold-soft`
-
-## Untouched
-- Hero section (SpaceHero) — কোনো change নেই
-- বাকি সব section unchanged
-- Design tokens semantic-ই থাকবে (hardcoded color নয়)
-
-## Visual Result
-```
-┌─────────────────────────────────────────────────────────────┐
-│  259,200,000+ │ 43,800+  │ 10,000+ │ 500+    │ 50+         │
-│  Seconds...   │ Hours... │ Students│ Projects│ AI Tools... │
-└─────────────────────────────────────────────────────────────┘
-```
+Approve to apply.
