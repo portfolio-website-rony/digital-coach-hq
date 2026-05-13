@@ -29,10 +29,10 @@ function Courses() {
           {PROGRAMS.map((p) => (
             <GlassCard key={p.title} className="flex flex-col">
               <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-primary-glow">
-                <GraduationCap className="h-4 w-4" /> {p.level}
+                <GraduationCap className="h-4 w-4" /> {p.tag}
               </div>
               <h3 className="mt-2 font-display text-xl font-bold">{p.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{p.desc}</p>
               <ul className="mt-4 space-y-1.5 text-sm">
                 {PERKS.slice(0, 4).map((b) => (
                   <li key={b} className="flex items-center gap-2 text-muted-foreground">
@@ -42,8 +42,8 @@ function Courses() {
               </ul>
               <div className="mt-6 flex items-center justify-between">
                 <span className="font-display text-lg font-bold text-gold-gradient">{p.price}</span>
-                <Link to="/book" className="inline-flex items-center gap-1 text-sm font-semibold text-primary-glow hover:underline">
-                  Enroll <ArrowRight className="h-4 w-4" />
+                <Link to={p.href as "/book"} className="inline-flex items-center gap-1 text-sm font-semibold text-primary-glow hover:underline">
+                  {p.cta} <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </GlassCard>
