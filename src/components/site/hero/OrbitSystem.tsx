@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import coachPortrait from "@/assets/coach-rony-portrait.png";
+import coachPortrait from "@/assets/coach-rony-portrait.webp";
 import { RINGS, type AiTool } from "./ai-tools";
 import { AiToolChip } from "./AiToolChip";
 
