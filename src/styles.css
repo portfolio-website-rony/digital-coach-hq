@@ -274,10 +274,24 @@
   to { transform: translateX(0); }
 }
 @utility animate-marquee-left {
-  animation: marquee-left 60s linear infinite;
+  animation: marquee-left 90s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
 }
 @utility animate-marquee-right {
-  animation: marquee-right 60s linear infinite;
+  animation: marquee-right 90s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+}
+@media (min-width: 640px) {
+  .animate-marquee-left { animation-duration: 60s; }
+  .animate-marquee-right { animation-duration: 60s; }
 }
 @utility marquee-mask {
   -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
